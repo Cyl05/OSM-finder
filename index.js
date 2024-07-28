@@ -1,26 +1,24 @@
-var map = L.map('map');
-let amenity = "hospital";
-let pincode = "560078";
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
+import express from "express";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import axios from "axios";
 
-// Function to perform the search
-function searchLocation(query) {
-    fetch(`https://nominatim.openstreetmap.org/search?q=${query}&bounded=1&format=json`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.length > 0) {
-                    for (let i = 0; i < data.length; i++) {
-                    var location = data[i];
-                    map.setView([location.lat, location.lon], 14);
-                    L.marker([location.lat, location.lon]).addTo(map);
-                }
-            } else {
-                alert("Location not found");
-            }
-        });
-}
+const app = express();
+const port = 3000;
 
-// Example usage
-searchLocation(`${amenity}s+near+${pincode}`);
+app.use(express.urlencoded({extended: true}));
+const __dirname = dirname(fileURLToPath(import.meta.url));
+app.use(express.static("public"));
+
+app.get("/", (req, res) => {
+    res.sendFile("index.html");
+});
+
+app.post("/", (req, res) => {
+    console.log(req.body);
+    res.redirect("/");
+});
+
+app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
+});
