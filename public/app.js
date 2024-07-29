@@ -1,10 +1,10 @@
 var map = L.map('map');
 let amenity = "hospital";
 let pincode = "560078";
+let markerGroup;
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
-
 
 function listItem (title, type, address, lat, lon) {
     return `
@@ -32,14 +32,21 @@ function zoomIntoLoc(loc) {
 }
 
 function searchLocation(query) {
+    console.log(query);
     fetch(`https://nominatim.openstreetmap.org/search?q=${query}&bounded=1&format=json`)
         .then(response => response.json())
         .then(data => {
             if (data.length > 0) {
+                $(".list-element").remove();
+                if (markerGroup) {
+                    map.removeLayer(markerGroup);
+                }
+                markerGroup = L.layerGroup().addTo(map);
                 for (let i = 0; i < data.length; i++) {
+                    
                     let location = data[i];
                     map.setView([location.lat, location.lon], 14);
-                    let loc_mark = L.marker([location.lat, location.lon]).addTo(map);
+                    let loc_mark = L.marker([location.lat, location.lon]).addTo(markerGroup);
                     let popUpContent = `<p class="popup-title list-title">${location.name}</p>`;
                     loc_mark.bindPopup(popUpContent);
                     $("#results").append(listItem(location.name, capitalizeFirstLetter(location.type), location.display_name, location.lat, location.lon));
@@ -57,4 +64,18 @@ $("#btn-submit").on("click", () => {
     amenity = $("#amenity").val();
     pincode = $("#pincode").val();
     searchLocation(`${amenity}s+near+${pincode}`);
+    if (map.hasLayer(markerGroup)) {
+        map.removeLayer(markerGroup);
+    }
+});
+
+$("#current-loc").on("click", function() {
+    amenity = $("#amenity").val();
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+        (position) => {
+            let coords = `${position.coords.latitude}%2C+${position.coords.longitude}`;
+            searchLocation(`${amenity}s+near+${coords}`);
+        });
+    }
 });
