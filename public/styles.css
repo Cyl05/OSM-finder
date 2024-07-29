@@ -14,6 +14,12 @@
     margin: 30px 0 10px 0;
     font-weight: 500;
     font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.popup-title {
+    font-size: 0.8rem;
+    font-weight: 900;
 }
 
 .list-button {
@@ -23,6 +29,7 @@
     border: none;
     border-radius: 50%;
     background-color: cornflowerblue;
+    cursor: pointer;
 }
 
 .list-type {
