@@ -1,0 +1,196 @@
+body {
+    background-color: #EDF2F4;
+}
+
+
+header {
+    height: 10vh;
+    background-color: #2B2D42;
+    border-bottom: 5px solid #8D99AE;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+::-webkit-scrollbar-track {
+background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: #555;
+}
+
+.logo {
+    display: block;
+    height: 10vh;
+    margin: auto;
+    padding: 10px;
+}
+
+#hero {
+    display: block;
+    margin: 10vh auto 0 auto;
+    width: 60%;
+    height: 70vh;
+}
+
+#input-area {
+    display: flex;
+    margin: 30px 0;
+    padding: 15px;
+    justify-content: center;
+    gap: 20px;
+    background-color: white;
+    border-radius: 20px;
+    transition: transform .2s;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+#input-area:hover {
+    transform: scale(1.02);
+}
+
+.form-label {
+    font-weight: 700;
+    color: #0d6efd;
+}
+
+.custom-select {
+    font-family: 'Fira Sans', sans-serif;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #8D99AE;
+}
+
+.custom-select:focus {
+    outline: none;
+}
+
+#pincode {
+    border-radius: 10px;
+    border: 1px solid #8D99AE;
+    padding: 5px;
+}
+
+#pincode:focus {
+    outline: none;
+}
+
+#map-area {
+    display: flex;
+    margin: auto;
+    padding: 20px 20px;
+    width: 96%;
+    background-color: white;
+    border-radius: 20px;
+    transition: transform .2s;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+#map-area:hover {
+    transform: scale(1.02)
+}
+
+#results {
+    display: block;
+    width: 45%;
+    height: 50vh;
+    margin-right: auto;
+    overflow: auto;
+    background-color: white;
+}
+
+#map {
+    width: 70%;
+    height: 50vh;
+    margin-left: auto;
+}
+
+
+.list-element {
+    width: 100%;
+    display: flex;
+    padding: 15px;
+    padding-top: 0;
+    font-family: 'Fira Sans', sans-serif;
+    border-bottom: 2px solid lightgray;
+}
+
+.list-title {
+    margin: 0 0 10px 0;
+    font-weight: 500;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.popup-title {
+    font-size: 0.8rem;
+    font-weight: 900;
+}
+
+.list-button {
+    margin: 20px 0 0 auto;
+    height: 5vh;
+    width: 5vh;
+    border: none;
+    border-radius: 50%;
+    background-color: cornflowerblue;
+    cursor: pointer;
+}
+
+.list-type {
+    margin: 0;
+    font-size: 0.9rem;
+    color: gray;
+}
+
+.list-address {
+    font-size: 0.9rem;
+    margin-top: 0;
+}
+
+#popup {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 30vh;
+    width: 30%;
+    background-color: #EDF2F4;
+    align-items: center;
+}
+
+@media (max-width: 1000px) {
+    #input-area {
+        flex-direction: column;
+    }   
+
+    .custom-select {
+        width: 100%;
+    }
+
+    #pincode {
+        width: 100%;
+    }
+
+    #map-area {
+        flex-direction: column;
+    }
+    
+    #map {
+        width: 100%;
+    }
+
+    #results {
+        width: 100%;
+    }
+}

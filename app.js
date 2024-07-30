@@ -14,7 +14,7 @@ function listItem (title, type, address, lat, lon) {
             <p class="list-type">${type}</p>
             <p class="list-address">${address}</p>
         </div>
-        <a href="https://www.google.com/maps/@?api=1&map_action=map&center=${lat},${lon}&zoom=18" target="_blank">
+        <a href="https://www.google.com/maps/@?api=1&map_action=map&center=${lat},${lon}&zoom=20" target="_blank">
             <button class="list-button">
                 <img src="pop-in-new.svg">
             </button>
@@ -33,7 +33,7 @@ function zoomIntoLoc(loc) {
 
 function searchLocation(query) {
     console.log(query);
-    fetch(`https://nominatim.openstreetmap.org/search?q=${query}&bounded=1&format=json`)
+    fetch(`https://nominatim.openstreetmap.org/search?q=${query}&bounded=0.1&limit=10&format=json`)
         .then(response => response.json())
         .then(data => {
             if (data.length > 0) {
@@ -75,7 +75,7 @@ $("#current-loc").on("click", function() {
         navigator.geolocation.getCurrentPosition(
         (position) => {
             let coords = `${position.coords.latitude}%2C+${position.coords.longitude}`;
-            searchLocation(`${amenity}s+near+${coords}`);
+            searchLocation(`${amenity}+near+${coords}`);
         });
     }
 });
