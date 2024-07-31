@@ -1,6 +1,7 @@
 # OSM Finder
 
 OSM finder is a tool using which you can find various amenities close to your current location or a pincode.
+**Try it out here**: https://osm-finder.onrender.com
 
 ### Features
 - Interactive slippy map for displaying results
