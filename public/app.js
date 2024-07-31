@@ -2,9 +2,18 @@ var map = L.map('map');
 let amenity = "hospital";
 let pincode = "560078";
 let markerGroup;
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{attribution}', {
+    foo: 'bar',
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
+
+
+var locIcon = L.icon({
+        iconUrl: 'location.png',
+        iconSize: [20, 20],
+        iconAnchor: [10, 10],
+        popupAnchor: [0, -10]
+});
 
 function listItem (title, type, address, lat, lon) {
     return `
@@ -16,7 +25,7 @@ function listItem (title, type, address, lat, lon) {
         </div>
         <a href="https://www.google.com/maps/@?api=1&map_action=map&center=${lat},${lon}&zoom=20" target="_blank">
             <button class="list-button">
-                <img src="pop-in-new.svg">
+                <img src="./images/pop-in-new.svg">
             </button>
         </a>
     </div>
@@ -46,9 +55,7 @@ function searchLocation(query) {
                     
                     let location = data[i];
                     map.setView([location.lat, location.lon], 14);
-                    let loc_mark = L.marker([location.lat, location.lon]).addTo(markerGroup);
-                    let popUpContent = `<p class="popup-title list-title">${location.name}</p>`;
-                    loc_mark.bindPopup(popUpContent);
+                    let loc_mark = L.marker([location.lat, location.lon]).addTo(markerGroup).bindPopup(`<p class="popup-title list-title">${location.name}</p>`);
                     $("#results").append(listItem(location.name, capitalizeFirstLetter(location.type), location.display_name, location.lat, location.lon));
                 }
                 $(".list-title").on("click", function() {
@@ -63,10 +70,7 @@ function searchLocation(query) {
 $("#btn-submit").on("click", () => {
     amenity = $("#amenity").val();
     pincode = $("#pincode").val();
-    searchLocation(`${amenity}s+near+${pincode}`);
-    if (map.hasLayer(markerGroup)) {
-        map.removeLayer(markerGroup);
-    }
+    searchLocation(`${amenity}+near+${pincode}`);
 });
 
 $("#current-loc").on("click", function() {
@@ -76,6 +80,7 @@ $("#current-loc").on("click", function() {
         (position) => {
             let coords = `${position.coords.latitude}%2C+${position.coords.longitude}`;
             searchLocation(`${amenity}+near+${coords}`);
+            L.marker([position.coords.latitude, position.coords.longitude], {icon: locIcon}).addTo(map).bindPopup("Your location");
         });
     }
 });
