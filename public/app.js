@@ -9,7 +9,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{attribution}', 
 
 
 var locIcon = L.icon({
-        iconUrl: 'location.png',
+        iconUrl: './images/location.png',
         iconSize: [20, 20],
         iconAnchor: [10, 10],
         popupAnchor: [0, -10]
@@ -54,10 +54,10 @@ function searchLocation(query) {
                 for (let i = 0; i < data.length; i++) {
                     
                     let location = data[i];
-                    map.setView([location.lat, location.lon], 14);
-                    let loc_mark = L.marker([location.lat, location.lon]).addTo(markerGroup).bindPopup(`<p class="popup-title list-title">${location.name}</p>`);
+                    L.marker([location.lat, location.lon]).addTo(markerGroup).bindPopup(`<p class="popup-title list-title">${location.name}</p>`);
                     $("#results").append(listItem(location.name, capitalizeFirstLetter(location.type), location.display_name, location.lat, location.lon));
                 }
+                map.setView([data[0].lat, data[0].lon], 13);
                 $(".list-title").on("click", function() {
                     zoomIntoLoc($(this))
                 });
