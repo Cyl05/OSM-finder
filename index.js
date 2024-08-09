@@ -8,7 +8,7 @@ const port = 3000;
 
 app.use(express.urlencoded({extended: true}));
 const __dirname = dirname(fileURLToPath(import.meta.url));
-app.use(express.static("./public"));
+app.use(express.static("public"));
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "./public/index.html"));

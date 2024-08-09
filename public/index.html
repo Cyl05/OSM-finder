@@ -72,7 +72,10 @@
                 <input type="text" id="pincode" name="pinCode"><br>
             </div>
             <button id="btn-submit" class="btn btn-primary">Go</button>
-            <button id="current-loc" class="btn btn-outline-primary">Check by location</button>
+            <button id="current-loc" class="btn btn-outline-primary">
+                <img src="images/crosshair.svg" class="crosshair-svg">
+                Check by location
+            </button>
         </div>
         <div id="map-area">
             <div id="map"></div>
@@ -88,6 +91,8 @@
         Made by <a href="https://github.com/Cyl05">Cyl05</a> using <a href="https://www.openstreetmap.org/">OpenStreetMap</a> and <a href="leafletjs.com">LeafletJS API</a>
     </footer>
 
+    <!-- axios -->
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""></script>
@@ -95,6 +100,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- leaflet locate -->
     <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
-    <script src="app.js"></script>
+    <script src="app.js" type="module"></script>
 </body>
 </html>

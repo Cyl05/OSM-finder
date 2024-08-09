@@ -108,6 +108,10 @@ background: #555;
     outline: none;
 }
 
+.crosshair-svg {
+    filter: invert(37%) sepia(95%) saturate(4736%) hue-rotate(209deg) brightness(101%) contrast(97%);
+}
+
 #map-area {
     display: flex;
     margin: auto;
