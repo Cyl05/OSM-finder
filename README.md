@@ -23,6 +23,7 @@ OSM finder is a tool using which you can find various amenities close to your cu
 - [OpenStreetMap] - Map database providing all information for searches
 - [LeafletJS] - JavaScript library used for the interactive slippy map and other features
 - [Nominatim] - REST API used to make the search queries to OSM.
+- [Axios] - API requests from client-side
 - [ExpressJS] - Routing of pages
 - [jQuery] - Easier DOM manipulation
 - [Bootstrap] - Easier CSS styling
@@ -33,3 +34,4 @@ OSM finder is a tool using which you can find various amenities close to your cu
 [ExpressJS]: <https://expressjs.com/>
 [jQuery]: <https://jquery.com/>
 [Bootstrap]: <https://getbootstrap.com/>
+[Axios]: <https://axios-http.com/>
